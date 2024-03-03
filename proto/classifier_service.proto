@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package classificaiton;
+
+service Classifier {
+  rpc ClassifyQuery(ClassifyQueryRequest) returns (ClassifyQueryResponse) {}
+}
+
+message ClassifyQueryRequest { optional string query = 1; }
+
+message ClassifyQueryResponse { optional Intent intent = 1; }
+
+message Intent {
+  oneof intent {
+    Audio audio = 1;
+    bool unknown = 2;
+  }
+
+  message Audio {}
+}
